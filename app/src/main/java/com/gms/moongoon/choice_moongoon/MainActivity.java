@@ -268,7 +268,14 @@ public class MainActivity extends AppCompatActivity implements MaterialTabListen
             case 0:
 
 //                data.getExtras().getString("res");
-                new DecodeJson().decodeJson(MainActivity.userRes, view, data.getExtras().getString("res"),data.getExtras().getBoolean("isQuestion"));
+                try {
+                    new DecodeJson().decodeJson(MainActivity.userRes, view, data.getExtras().getString("res"),data.getExtras().getBoolean("isQuestion"));
+                }
+                catch (Exception e)
+                {
+                    return;
+                }
+
                 break;
         }
 
@@ -297,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements MaterialTabListen
                 case 1:
                     return new OffLine_Fragment();
                 case 2:
-                    return new OffLine_Fragment();
+                    return new Setting_Fragment();
 
                 default:
                     return new OffLine_Fragment();
