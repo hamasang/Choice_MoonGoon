@@ -35,6 +35,7 @@ public class Setting_Fragment extends Fragment {
     View view;
 
     ImageView inside,outside;
+    //셋팅창
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
