@@ -41,7 +41,6 @@ public class OffLine_Fragment extends Fragment {
 
         inside.startAnimation(rotateAnimation);
 
-
         view.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         return view;
     }
