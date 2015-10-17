@@ -19,6 +19,7 @@ import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,9 @@ public class Setting_Fragment extends Fragment {
         view = inflater.inflate(R.layout.setting, container, false);
         view.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         return view;
+
+        ListView lv;
+
 
     }
 

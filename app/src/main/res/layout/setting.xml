@@ -4,15 +4,11 @@
     >
 <!--Settings-->
 
-    <Switch
+    <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="테스트버튼"
-        android:id="@+id/switch1"
-        android:layout_marginBottom="93dp"
-        android:layout_alignParentBottom="true"
+        android:id="@+id/listView"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="52dp"
-        android:layout_marginStart="52dp" />
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
