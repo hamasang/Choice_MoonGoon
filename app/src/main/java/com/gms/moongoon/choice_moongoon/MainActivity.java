@@ -10,6 +10,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -18,17 +19,12 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
-
-import com.gms.moongoon.choice_moongoon.GCM_Manage.GCM_SERVER;
 import com.gms.moongoon.choice_moongoon.GCM_Manage.GcmQuickStartPreference;
 import com.gms.moongoon.choice_moongoon.GCM_Manage.GcmRegisterIntentService;
 import com.gms.moongoon.choice_moongoon.GET_POST.PostServer;
@@ -36,32 +32,25 @@ import com.gms.moongoon.choice_moongoon.tools.DecodeJson;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
 
 public class MainActivity extends AppCompatActivity implements MaterialTabListener {
 
+    public static String userRes;
     Toolbar toolbar;
     View view;
-
     ViewPager pager;
     ViewpagerAdapter pagerAdapter;
     MaterialTabHost tabHost;
     Resources res;
-
-    private BroadcastReceiver mRegistrationBroadcastReceiver;
-
     SharedPreferences pref;
     SharedPreferences.Editor edit;
     String sex = null;
     String age = null;
     String token = null;
-
-    public static String userRes;
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -290,6 +279,19 @@ public class MainActivity extends AppCompatActivity implements MaterialTabListen
         }
     }
 
+    Drawable getIcon(int position) {
+        switch (position) {
+            case 0:
+                return res.getDrawable(R.drawable.ic_online);
+            case 1:
+                return res.getDrawable(R.drawable.ic_offline);
+            case 2:
+                return res.getDrawable(R.drawable.ic_settings);
+
+        }
+        return null;
+    }
+
     class ViewpagerAdapter extends FragmentStatePagerAdapter {
         public ViewpagerAdapter(FragmentManager fm) {
             super(fm);
@@ -307,7 +309,7 @@ public class MainActivity extends AppCompatActivity implements MaterialTabListen
                     return new Setting_Fragment();
 
                 default:
-                    return new OffLine_Fragment();
+                    return new OffLine_Fragment();//으어ㅓㅓㅓㅓ
             }
 
         }
@@ -330,19 +332,6 @@ public class MainActivity extends AppCompatActivity implements MaterialTabListen
                     return null;
             }
         }
-    }
-
-    Drawable getIcon(int position) {
-        switch (position) {
-            case 0:
-                return res.getDrawable(R.drawable.ic_online);
-            case 1:
-                return res.getDrawable(R.drawable.ic_offline);
-            case 2:
-                return res.getDrawable(R.drawable.ic_settings);
-
-        }
-        return null;
     }
 
 
