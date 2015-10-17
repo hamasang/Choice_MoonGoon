@@ -39,7 +39,8 @@ public class OffLine_Fragment extends Fragment {
         rotateAnimation.setRepeatCount(4);
         rotateAnimation.setDuration(10000);
 
-        inside.startAnimation(rotateAnimation);
+        inside.startAnimation(rotateAnimation);//회전 에니메이션
+
 
         view.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         return view;
