@@ -12,7 +12,7 @@ public class Setting_Fragment extends Fragment {
     View view;
 
     ImageView inside,outside;
-    //셋팅창
+    //셋팅창s
 
 
     @Override
