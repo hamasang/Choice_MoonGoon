@@ -185,11 +185,10 @@ public class MainActivity extends AppCompatActivity implements MaterialTabListen
         };
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        System.gc();
-    }
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//    }
 
     public void getFirstExe() {
 

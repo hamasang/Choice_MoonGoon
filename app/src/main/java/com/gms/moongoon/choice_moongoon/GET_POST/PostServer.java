@@ -50,7 +50,7 @@ public class PostServer extends AsyncTask<String, Void, Void> {
         HttpConnectionParams.setSoTimeout(httpParams, 5000);
 
         try {
-            UrlEncodedFormEntity urlEncodedFormEntity = new UrlEncodedFormEntity(postUserInfoVales, "UTF-8");
+            UrlEncodedFormEntity urlEncodedFormEntity = new UrlEncodedFormEntity(postUserInfoVales, "EUC-KR");
             httpPost.setEntity(urlEncodedFormEntity);
             httpClient.execute(httpPost);
         } catch (Exception e) {

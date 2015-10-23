@@ -23,12 +23,4 @@ public class Setting_Fragment extends Fragment {
 
 
     }
-
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        view.findViewById(R.id.backGround_offline).setBackground(null);
-        System.gc();
-    }
 }
