@@ -12,11 +12,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 
-import java.net.URI;
-import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by user on 2015-08-18.
@@ -50,7 +46,7 @@ public class PostServer extends AsyncTask<String, Void, Void> {
         HttpConnectionParams.setSoTimeout(httpParams, 5000);
 
         try {
-            UrlEncodedFormEntity urlEncodedFormEntity = new UrlEncodedFormEntity(postUserInfoVales, "EUC-KR");
+            UrlEncodedFormEntity urlEncodedFormEntity = new UrlEncodedFormEntity(postUserInfoVales, "UTF-8");
             httpPost.setEntity(urlEncodedFormEntity);
             httpClient.execute(httpPost);
         } catch (Exception e) {

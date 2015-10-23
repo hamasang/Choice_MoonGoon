@@ -14,8 +14,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
-import java.net.URLDecoder;
-
 /**
  * Created by user on 2015-08-18.
  */
@@ -35,7 +33,6 @@ public class GetServer extends AsyncTask<Void, Void, String> {
             }else{
                 //connect but no Data
             }
-            String ud =  URLDecoder.decode(String.valueOf(httpEntity), "EUC-KR").toString();
             String res = EntityUtils.toString(httpEntity);
             Log.e("GetServer", res);
             return res;
