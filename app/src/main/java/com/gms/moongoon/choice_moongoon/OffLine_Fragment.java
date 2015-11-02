@@ -68,7 +68,7 @@ public class OffLine_Fragment extends Fragment {
         if(enter && nextAnim == R.drawable.roulette_spin) {    // 특정 animation detect
             Animation anim = AnimationUtils.loadAnimation(getActivity(), nextAnim);
             anim.setAnimationListener(new Animation.AnimationListener() {
-                @Override
+                @Override//wrwer
                 public void onAnimationStart(Animation animation) {
                     Toast.makeText(getActivity(),"결과는 1입니다!",Toast.LENGTH_SHORT).show();
                 }
