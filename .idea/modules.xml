@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Choice_MoonGoon.iml" filepath="$PROJECT_DIR$/Choice_MoonGoon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Choice_MoonGoon-master.iml" filepath="$PROJECT_DIR$/Choice_MoonGoon-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
