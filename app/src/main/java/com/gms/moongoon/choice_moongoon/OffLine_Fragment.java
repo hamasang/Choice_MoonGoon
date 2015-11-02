@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
+import android.widget.Button;
 import android.widget.ImageView;
 
 /**
@@ -24,7 +25,7 @@ import android.widget.ImageView;
 public class OffLine_Fragment extends Fragment {
 
     View view;
-
+    Button btn1;
     ImageView inside,outside;
 
     @Override
@@ -34,13 +35,18 @@ public class OffLine_Fragment extends Fragment {
         inside = (ImageView)view.findViewById(R.id.spinner_inside);
         outside = (ImageView)view.findViewById(R.id.spinner_outside);
         //재자리회전
-        RotateAnimation rotateAnimation = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF,0.5f, Animation.RELATIVE_TO_SELF,0.5f);
-        rotateAnimation.setInterpolator(new LinearInterpolator());
-        rotateAnimation.setRepeatCount(4);
-        rotateAnimation.setDuration(10000);
+        btn1 = (Button) view.findViewById(R.id.button);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RotateAnimation rotateAnimation = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                rotateAnimation.setInterpolator(new LinearInterpolator());
+                rotateAnimation.setRepeatCount(4);
+                rotateAnimation.setDuration(10000);
 
-        inside.startAnimation(rotateAnimation);//회전 에니메이션
-
+                inside.startAnimation(rotateAnimation);//회전 에니메이션
+            }
+        });
 
         view.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         return view;
