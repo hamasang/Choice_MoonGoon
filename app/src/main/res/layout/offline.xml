@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@null"
-    >
+    android:background="@null">
 
     <ImageView
         android:layout_width="match_parent"
@@ -135,5 +134,16 @@
         android:layout_alignEnd="@+id/food5"
         android:lines="1"
         android:hint="8" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="입력"
+        android:id="@+id/button2"
+        android:layout_below="@+id/button"
+        android:layout_alignLeft="@+id/button"
+        android:layout_alignStart="@+id/button"
+        android:textColor="#fff"
+        android:textStyle="bold" />
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.gms.moongoon.choice_moongoon;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
@@ -34,23 +35,22 @@ import java.util.TimerTask;
 public class OffLine_Fragment extends Fragment {
 
     View view;
-    Button btn1;
+    Button btn1,btn2;
     ImageView inside,outside;
     Random mRand;
     EditText fd1,fd2,fd3,fd4,fd5,fd6,fd7,fd8;
-    public  String[] food = {};
-    static int count = 8;
+    static String[] food = {"","","","","","","",""};
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.offline, container, false);
-//        fd1 = (EditText)view.findViewById(R.id.food1);
-//        fd2 = (EditText)view.findViewById(R.id.food2);
-//        fd3 = (EditText)view.findViewById(R.id.food3);
-//        fd4 = (EditText)view.findViewById(R.id.food4);
-//        fd5 = (EditText)view.findViewById(R.id.food5);
-//        fd6 = (EditText)view.findViewById(R.id.food6);
-//        fd7 = (EditText)view.findViewById(R.id.food7);
-//        fd8 = (EditText)view.findViewById(R.id.food8);
+        fd1 = (EditText)view.findViewById(R.id.food1);
+        fd2 = (EditText)view.findViewById(R.id.food2);
+        fd3 = (EditText)view.findViewById(R.id.food3);
+        fd4 = (EditText)view.findViewById(R.id.food4);
+        fd5 = (EditText)view.findViewById(R.id.food5);
+        fd6 = (EditText)view.findViewById(R.id.food6);
+        fd7 = (EditText)view.findViewById(R.id.food7);
+        fd8 = (EditText)view.findViewById(R.id.food8);
 
         inside = (ImageView)view.findViewById(R.id.spinner_inside);
         outside = (ImageView)view.findViewById(R.id.spinner_outside);
@@ -59,37 +59,15 @@ public class OffLine_Fragment extends Fragment {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                fd1.setVisibility(View.GONE);
+                fd2.setVisibility(View.GONE);
+                fd3.setVisibility(View.GONE);
+                fd4.setVisibility(View.GONE);
+                fd5.setVisibility(View.GONE);
+                fd6.setVisibility(View.GONE);
+                fd7.setVisibility(View.GONE);
+                fd8.setVisibility(View.GONE);
 
-//                if(fd1.getText().toString()==""){
-//                    count--;
-//                }
-//                else if(fd2.getText().toString()==""){
-//                    count--;
-//                }
-//                else if(fd3.getText().toString()==""){
-//                    count--;
-//                }
-//                else if(fd4.getText().toString()==""){
-//                    count--;
-//                }
-//                else if(fd5.getText().toString()==""){
-//                    count--;
-//                }
-//                else if(fd6.getText().toString()==""){
-//                    count--;
-//                }
-//                else if(fd7.getText().toString()==""){
-//                    count--;
-//                }
-//                else if(fd8.getText().toString()==""){
-//                    count--;
-//                }else {
-//
-//                    for (int i = 1; i <= count; i++) {
-//                        food[i] = String.valueOf("fd" + i);
-//                    }
-//
-//                }
                 Snackbar.make(getView(),"아직 서비스 되지 않습니다.",Snackbar.LENGTH_LONG).show();
 
                 RotateAnimation rotateAnimation = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
@@ -103,13 +81,24 @@ public class OffLine_Fragment extends Fragment {
                     @Override
                     public void run() {
                         timer.cancel();
-                        Snackbar.make(getView(), "" +
+                        String a = String.valueOf((int) (Math.random()*food.length));
+                        Snackbar.make(getView(), a +
                                 "이(가) 선택되었습니다.", Snackbar.LENGTH_LONG).show();
+
                     }
+
                 };
                 timer.schedule(myTask, 5000);
 
 
+            }
+        });
+        btn2 = (Button)view.findViewById(R.id.button2);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), input.class);
+                startActivity(intent);
             }
         });
 

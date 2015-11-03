@@ -33,6 +33,9 @@
         <activity android:name=".SendActivity"
             android:orientation="vertical">
         </activity>
+        <activity android:name=".input"
+            android:orientation="vertical">
+        </activity>
 
         <!-- [START gcm_receiver] GCM을 받았을 때 동작하기 위한 리시버 -->
         <receiver
