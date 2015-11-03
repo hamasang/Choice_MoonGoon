@@ -14,6 +14,8 @@ import android.support.v4.app.NotificationCompat;
 import com.gms.moongoon.choice_moongoon.MainActivity;
 import com.gms.moongoon.choice_moongoon.R;
 
+import java.net.URLDecoder;
+
 public class GcmListenerService extends com.google.android.gms.gcm.GcmListenerService {
    private static final String TAG = "GcmListenerService";
 
@@ -38,8 +40,8 @@ public class GcmListenerService extends com.google.android.gms.gcm.GcmListenerSe
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.right_arrow)
-                .setContentTitle(title)
-                .setContentText(message)
+                .setContentTitle(title = URLDecoder.decode(title))
+                .setContentText(message = URLDecoder.decode(message))
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);
