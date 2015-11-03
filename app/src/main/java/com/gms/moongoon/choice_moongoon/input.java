@@ -20,6 +20,7 @@ public class input extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.input);
+        OffLine_Fragment.food.clear();
         edt1 = (EditText)findViewById(R.id.editText);
         edt2 = (EditText)findViewById(R.id.editText2);
         edt3 = (EditText)findViewById(R.id.editText3);
@@ -32,14 +33,30 @@ public class input extends AppCompatActivity {
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OffLine_Fragment.food[0] = String.valueOf(edt1.getText());
-                OffLine_Fragment.food[1] = String.valueOf(edt2.getText());
-                OffLine_Fragment.food[2] = String.valueOf(edt3.getText());
-                OffLine_Fragment.food[3] = String.valueOf(edt4.getText());
-                OffLine_Fragment.food[4] = String.valueOf(edt5.getText());
-                OffLine_Fragment.food[5] = String.valueOf(edt6.getText());
-                OffLine_Fragment.food[6] = String.valueOf(edt7.getText());
-                OffLine_Fragment.food[7] = String.valueOf(edt8.getText());
+                if(!edt1.getText().equals("")){
+                    OffLine_Fragment.food.add(String.valueOf(edt1.getText()));
+                }
+                if(!edt2.getText().equals("")){
+                    OffLine_Fragment.food.add(String.valueOf(edt2.getText()));
+                }
+                if(!edt3.getText().equals("")){
+                    OffLine_Fragment.food.add(String.valueOf(edt3.getText()));
+                }
+                if(!edt4.getText().equals("")){
+                    OffLine_Fragment.food.add(String.valueOf(edt4.getText()));
+                }
+                if(!edt5.getText().equals("")){
+                    OffLine_Fragment.food.add(String.valueOf(edt5.getText()));
+                }
+                if(!edt6.getText().equals("")){
+                    OffLine_Fragment.food.add(String.valueOf(edt6.getText()));
+                }
+                if(!edt7.getText().equals("")){
+                    OffLine_Fragment.food.add(String.valueOf(edt7.getText()));
+                }
+                if(!edt8.getText().equals("")){
+                    OffLine_Fragment.food.add(String.valueOf(edt8.getText()));
+                }
                 finish();
             }
         });

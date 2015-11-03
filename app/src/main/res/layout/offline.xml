@@ -22,7 +22,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="12.5dp" />
+        android:layout_marginBottom="12.5dp"
+        android:layout_alignParentEnd="false" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -45,95 +46,6 @@
         android:layout_alignParentEnd="true"
         android:textStyle="bold"
         android:textColor="#fff" />
-
-    <EditText
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/food1"
-        android:layout_marginTop="75dp"
-        android:layout_alignTop="@+id/spinner_inside"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="122dp"
-        android:layout_marginStart="122dp"
-        android:lines="1"
-        android:hint="1" />
-
-    <EditText
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/food2"
-        android:layout_marginLeft="39dp"
-        android:layout_marginStart="39dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:lines="1"
-        android:hint="2" />
-
-    <EditText
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/food3"
-        android:layout_below="@+id/food2"
-        android:layout_alignLeft="@+id/food2"
-        android:layout_alignStart="@+id/food2"
-        android:layout_marginTop="61dp"
-        android:lines="1"
-        android:hint="3" />
-
-    <EditText
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/food4"
-        android:layout_below="@+id/food3"
-        android:layout_toRightOf="@+id/food3"
-        android:layout_toEndOf="@+id/food3"
-        android:layout_marginTop="27dp"
-        android:lines="1"
-        android:hint="4" />
-
-    <EditText
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/food5"
-        android:layout_alignTop="@+id/food4"
-        android:layout_toRightOf="@+id/food1"
-        android:layout_toEndOf="@+id/food1"
-        android:layout_marginLeft="37dp"
-        android:layout_marginStart="37dp"
-        android:lines="1"
-        android:hint="5" />
-
-    <EditText
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/food6"
-        android:lines="1"
-        android:layout_alignTop="@+id/food3"
-        android:layout_alignLeft="@+id/food7"
-        android:layout_alignStart="@+id/food7"
-        android:hint="6" />
-
-    <EditText
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/food7"
-        android:layout_alignTop="@+id/food2"
-        android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button"
-        android:lines="1"
-        android:hint="7" />
-
-    <EditText
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/food8"
-        android:layout_alignTop="@+id/food1"
-        android:layout_alignRight="@+id/food5"
-        android:layout_alignEnd="@+id/food5"
-        android:lines="1"
-        android:hint="8" />
 
     <Button
         android:layout_width="wrap_content"
