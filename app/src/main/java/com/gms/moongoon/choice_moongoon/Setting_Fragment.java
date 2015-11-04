@@ -67,14 +67,19 @@ public class Setting_Fragment extends Fragment implements AdapterViewCompat.OnIt
         switch (position){
             case 0:
 //                Toast.makeText(getActivity(),"1번",Toast.LENGTH_SHORT).show();
+                break;
             case 1:
                 Toast.makeText(getActivity(),"기능구현중",Toast.LENGTH_SHORT).show();
+                break;
             case 2:
                 Toast.makeText(getActivity(),"기능구현중",Toast.LENGTH_SHORT).show();
+                break;
             case 3:
                 Toast.makeText(getActivity(),"기능구현중",Toast.LENGTH_SHORT).show();
+                break;
             case 4:
                 Toast.makeText(getActivity(),getString(R.string.check_version),Toast.LENGTH_SHORT).show();
+                break;
             default:
                 break;
         }
