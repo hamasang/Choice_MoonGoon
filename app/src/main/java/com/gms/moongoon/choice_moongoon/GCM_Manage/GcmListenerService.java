@@ -15,7 +15,9 @@ import com.gms.moongoon.choice_moongoon.MainActivity;
 import com.gms.moongoon.choice_moongoon.R;
 
 import java.net.URLDecoder;
-
+/*
+* 수정일 2015-11-03
+ */
 public class GcmListenerService extends com.google.android.gms.gcm.GcmListenerService {
    private static final String TAG = "GcmListenerService";
 
