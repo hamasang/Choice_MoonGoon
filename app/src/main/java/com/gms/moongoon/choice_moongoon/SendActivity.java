@@ -13,6 +13,8 @@ import android.widget.EditText;
 
 import com.gms.moongoon.choice_moongoon.Libraries.MatchingSecretTextView_Package.AutofitHelper;
 import com.gms.moongoon.choice_moongoon.Libraries.MatchingSecretTextView_Package.SecretMatchingTextView;
+import com.gms.moongoon.choice_moongoon.splash.inksplash;
+import com.gms.moongoon.choice_moongoon.splash.sendsplash;
 
 /**
  * Created by user on 2015-09-07.
@@ -21,7 +23,7 @@ public class SendActivity extends Activity {
 
     Intent sendIntent;
     Bundle sendExtra;
-
+    int splash = 0;
     int index = 1;
     SecretMatchingTextView secretMatchingTextView;
     EditText sendEditText;
@@ -32,6 +34,13 @@ public class SendActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send);
+        if(splash <= 0){
+            Intent intents = new Intent(SendActivity.this, inksplash.class);
+            startActivity(intents);
+            splash++;
+        }else{
+
+        }
 
         sendIntent = new Intent();
         sendExtra = new Bundle();
@@ -88,6 +97,8 @@ public class SendActivity extends Activity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intents = new Intent(SendActivity.this, sendsplash.class);
+                startActivity(intents);
                 sendExtra.putString("res",secretMatchingTextView.getText().toString());
                 sendExtra.putBoolean("isQuestion",true);
                 sendIntent.putExtras(sendExtra);

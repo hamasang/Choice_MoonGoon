@@ -25,6 +25,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.gms.moongoon.choice_moongoon.splash.rulletsplash;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
@@ -107,6 +109,8 @@ public class OffLine_Fragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), input.class);
                 startActivity(intent);
+                Intent intents = new Intent(getActivity(), rulletsplash.class);
+                startActivity(intents);
             }
         });
 

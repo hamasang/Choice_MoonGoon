@@ -24,8 +24,8 @@ public class inksplash extends AppCompatActivity{
         final TimerTask myTask = new TimerTask() {
             @Override
             public void run() {
-                Intent intent = new Intent(inksplash.this, SendActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(inksplash.this, SendActivity.class);
+//                startActivity(intent);
                 finish();
             }
         };
