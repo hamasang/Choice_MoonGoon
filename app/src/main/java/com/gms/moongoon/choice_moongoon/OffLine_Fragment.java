@@ -32,6 +32,7 @@ import java.util.TimerTask;
 
 /**
  * Created by user on 2015-08-08.
+ * 수정일 2015-11-04
  */
 public class OffLine_Fragment extends Fragment {
     static ArrayList<String> food = new ArrayList<String>();
