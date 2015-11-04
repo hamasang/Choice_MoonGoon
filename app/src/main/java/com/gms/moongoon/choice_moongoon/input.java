@@ -35,26 +35,19 @@ public class input extends AppCompatActivity {
             public void onClick(View v) {
                 if(!edt1.getText().equals("")){
                     OffLine_Fragment.food.add(String.valueOf(edt1.getText()));
-                }
-                if(!edt2.getText().equals("")){
+                }else if(!edt2.getText().equals("")){
                     OffLine_Fragment.food.add(String.valueOf(edt2.getText()));
-                }
-                if(!edt3.getText().equals("")){
+                }else if(!edt3.getText().equals("")){
                     OffLine_Fragment.food.add(String.valueOf(edt3.getText()));
-                }
-                if(!edt4.getText().equals("")){
+                }else if(!edt4.getText().equals("")){
                     OffLine_Fragment.food.add(String.valueOf(edt4.getText()));
-                }
-                if(!edt5.getText().equals("")){
+                }else if(!edt5.getText().equals("")){
                     OffLine_Fragment.food.add(String.valueOf(edt5.getText()));
-                }
-                if(!edt6.getText().equals("")){
+                }else if(!edt6.getText().equals("")){
                     OffLine_Fragment.food.add(String.valueOf(edt6.getText()));
-                }
-                if(!edt7.getText().equals("")){
+                }else if(!edt7.getText().equals("")){
                     OffLine_Fragment.food.add(String.valueOf(edt7.getText()));
-                }
-                if(!edt8.getText().equals("")){
+                }else if(!edt8.getText().equals("")){
                     OffLine_Fragment.food.add(String.valueOf(edt8.getText()));
                 }
                 finish();

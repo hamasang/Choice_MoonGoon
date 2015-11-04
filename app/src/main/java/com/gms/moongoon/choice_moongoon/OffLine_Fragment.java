@@ -49,7 +49,7 @@ public class OffLine_Fragment extends Fragment {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (food.size() == 0) {
+                if (food.size() >= 0) {
                     OffLine_Fragment.food.clear();
                     Snackbar.make(getView(), "입력부터 하세요!", Snackbar.LENGTH_LONG).show();
                 } else {
