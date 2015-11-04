@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements MaterialTabListen
     String age = null;
     String token = null;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
+    public static final String KEY_MY_PREFERENCE = "my_preference";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements MaterialTabListen
         setTheme(android.R.style.Theme_Holo_Light_NoActionBar_TranslucentDecor);
         setContentView(R.layout.activity_main);
         view = getWindow().getDecorView();
+
+
 
         pref = getSharedPreferences("VER", MODE_PRIVATE);
         edit = pref.edit();

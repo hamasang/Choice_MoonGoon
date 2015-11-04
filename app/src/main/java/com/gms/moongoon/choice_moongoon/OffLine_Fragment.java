@@ -65,29 +65,29 @@ public class OffLine_Fragment extends Fragment {
                         @Override
                         public void run() {
                             timer.cancel();
-                            String a = String.valueOf((int) (Math.random() * food.size()));
-                            if (a.equals("0")) {
+                            int a = (int) (Math.random() * food.size());
+                            if (a == 0) {
                                 Snackbar.make(getView(), food.get(0) +
                                         "이(가) 선택되었습니다.", Snackbar.LENGTH_LONG).show();
-                            } else if (a.equals("1")) {
+                            } else if (a == 1) {
                                 Snackbar.make(getView(), food.get(1) +
                                         "이(가) 선택되었습니다.", Snackbar.LENGTH_LONG).show();
-                            } else if (a.equals("2")) {
+                            } else if (a == 2) {
                                 Snackbar.make(getView(), food.get(2) +
                                         "이(가) 선택되었습니다.", Snackbar.LENGTH_LONG).show();
-                            } else if (a.equals("3")) {
+                            } else if (a == 3) {
                                 Snackbar.make(getView(), food.get(3) +
                                         "이(가) 선택되었습니다.", Snackbar.LENGTH_LONG).show();
-                            } else if (a.equals("4")) {
+                            } else if (a == 4) {
                                 Snackbar.make(getView(), food.get(4) +
                                         "이(가) 선택되었습니다.", Snackbar.LENGTH_LONG).show();
-                            } else if (a.equals("5")) {
+                            } else if (a == 5) {
                                 Snackbar.make(getView(), food.get(5) +
                                         "이(가) 선택되었습니다.", Snackbar.LENGTH_LONG).show();
-                            } else if (a.equals("6")) {
+                            } else if (a == 6) {
                                 Snackbar.make(getView(), food.get(6) +
                                         "이(가) 선택되었습니다.", Snackbar.LENGTH_LONG).show();
-                            } else if (a.equals("7")) {
+                            } else if (a == 7) {
                                 Snackbar.make(getView(), food.get(7) +
                                         "이(가) 선택되었습니다.", Snackbar.LENGTH_LONG).show();
                             }
