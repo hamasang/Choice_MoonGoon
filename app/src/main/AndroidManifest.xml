@@ -21,6 +21,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
+            android:orientation="vertical"
             android:windowSoftInputMode="adjustResize|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,15 +29,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FirstUserInfo" >
+        <activity android:name=".FirstUserInfo"
+            android:orientation="vertical">
         </activity>
         <activity android:name=".SendActivity"
             android:orientation="vertical">
         </activity>
         <activity
             android:name=".input"
-            android:windowSoftInputMode="adjustResize|adjustPan">
+            android:windowSoftInputMode="adjustResize|adjustPan"
+            android:orientation="vertical">
         </activity>
+        <activity android:name=".splash.inksplash" android:orientation="vertical"></activity>
+        <activity android:name=".splash.rulletsplash" android:orientation="vertical"></activity>
+        <activity android:name=".splash.sendsplash" android:orientation="vertical"></activity>
 
         <!-- [START gcm_receiver] GCM을 받았을 때 동작하기 위한 리시버 -->
         <receiver
