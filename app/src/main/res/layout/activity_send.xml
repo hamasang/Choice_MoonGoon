@@ -7,7 +7,8 @@
     android:background="@drawable/send_activity_background">
     <android.support.v7.widget.Toolbar
         style="@style/Toolbar"
-        app:contentInsetStart="0dp">
+        app:contentInsetStart="0dp"
+        android:id="@+id/view">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,17 +40,15 @@
 
 
     <com.gms.moongoon.choice_moongoon.Libraries.MatchingSecretTextView_Package.SecretMatchingTextView
-        android:layout_width="match_parent"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:id="@+id/matchingSecretTextView"
-        android:layout_alignParentTop="true"
         autofit:minTextSize="8sp"
         android:textColor="@color/primary_material_dark"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="139dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:maxLength="400"/>
+        android:layout_marginTop="110dp"
+        android:maxLength="400"
+        android:layout_below="@+id/view"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="match_parent"
@@ -57,5 +56,6 @@
         android:id="@+id/sendEditText"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:hint="여기에 입력하세요!" />
 </RelativeLayout>
