@@ -31,6 +31,7 @@ public class GCM_SERVER {
         this.token = token;
         this.message = message;
         this.isQuestion = isQuestion;
+
 //        token = "e-siVUhNN1E:APA91bFxWcrKPWl40uMZQafcw2uVXSBhscUPPngZTf0GTLkKmrCTW_ca8JjMgacb0L1nAyfeqZrDVYwpJJwpNbOGkMlEGnryHKr72zCwXpIbUFQP6iHjtqeMUCytDULIFd9YOYlLd4LM";
         PostThread postThread = new PostThread();
         postThread.start();

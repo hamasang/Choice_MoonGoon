@@ -18,8 +18,9 @@
         android:largeHeap="true"
         android:windowSoftInputMode="adjustResize|adjustPan"
         android:theme="@style/AppTheme" >
+
         <activity
-            android:name=".MainActivity"
+            android:name=".splash.splash"
             android:label="@string/app_name"
             android:orientation="vertical"
             android:windowSoftInputMode="adjustResize|adjustPan">
@@ -29,6 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" android:orientation="vertical"></activity>
         <activity android:name=".FirstUserInfo"
             android:orientation="vertical">
         </activity>
@@ -43,6 +45,7 @@
         <activity android:name=".splash.inksplash" android:orientation="vertical"></activity>
         <activity android:name=".splash.rulletsplash" android:orientation="vertical"></activity>
         <activity android:name=".splash.sendsplash" android:orientation="vertical"></activity>
+        <activity android:name=".splash.guidesplash" android:orientation="vertical"></activity>
 
         <!-- [START gcm_receiver] GCM을 받았을 때 동작하기 위한 리시버 -->
         <receiver

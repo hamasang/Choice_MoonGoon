@@ -28,6 +28,8 @@ import android.widget.TextView;
 import com.gms.moongoon.choice_moongoon.GCM_Manage.GcmQuickStartPreference;
 import com.gms.moongoon.choice_moongoon.GCM_Manage.GcmRegisterIntentService;
 import com.gms.moongoon.choice_moongoon.GET_POST.PostServer;
+import com.gms.moongoon.choice_moongoon.splash.guidesplash;
+import com.gms.moongoon.choice_moongoon.splash.splash;
 import com.gms.moongoon.choice_moongoon.tools.DecodeJson;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -47,9 +49,11 @@ public class MainActivity extends AppCompatActivity implements MaterialTabListen
     Resources res;
     SharedPreferences pref;
     SharedPreferences.Editor edit;
+
     String sex = null;
     String age = null;
     String token = null;
+    SharedPreferences guidecheck;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     public static final String KEY_MY_PREFERENCE = "my_preference";
 
@@ -60,7 +64,12 @@ public class MainActivity extends AppCompatActivity implements MaterialTabListen
         setContentView(R.layout.activity_main);
         view = getWindow().getDecorView();
 
-
+        SharedPreferences prefs = getSharedPreferences("Pref",MODE_PRIVATE);
+        boolean guicheck = (prefs.getBoolean("GUIDE", true));
+        if(prefs.getBoolean("GUIDE", false)){
+            Intent intents = new Intent(MainActivity.this, guidesplash.class);
+            startActivity(intents);
+        }
 
         pref = getSharedPreferences("VER", MODE_PRIVATE);
         edit = pref.edit();

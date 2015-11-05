@@ -31,6 +31,7 @@ public class Setting_Fragment extends Fragment implements AdapterViewCompat.OnIt
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.setting, container, false);
         view.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+
         return view;
 
 
@@ -44,10 +45,12 @@ public class Setting_Fragment extends Fragment implements AdapterViewCompat.OnIt
         
         // 리스트뷰 초기화
         monthsListView = (ListView)view.findViewById(R.id.listView);
+
         // 어댑터 설정
         arrayAdapter = new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,data);
         // setAdapter 를 이용해서 monthsListView 에 어댑터 설정
         monthsListView.setAdapter(arrayAdapter);
+
         monthsListView.setOnItemClickListener(Setting_Fragment.this);
 
 

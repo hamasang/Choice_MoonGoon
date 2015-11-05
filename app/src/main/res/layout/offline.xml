@@ -22,7 +22,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="false"
         android:layout_alignWithParentIfMissing="true"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:id="@+id/relativeLayout">
 
         <ImageView
             android:layout_width="350dp"
@@ -44,6 +45,19 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/textView"
+            android:background="@drawable/customtoast"
+            android:gravity="center"
+            android:textColor="#000"
+            android:layout_alignTop="@+id/spinner_inside"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:visibility="gone" />
 
     </RelativeLayout>
 

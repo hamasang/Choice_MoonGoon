@@ -23,6 +23,7 @@ import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gms.moongoon.choice_moongoon.splash.rulletsplash;
@@ -32,74 +33,85 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static com.google.android.gms.internal.zzhl.runOnUiThread;
+
 /**
  * Created by user on 2015-08-08.
  * 수정일 2015-11-04
  */
 public class OffLine_Fragment extends Fragment {
-    static ArrayList<String> food = new ArrayList<String>();
+//    static ArrayList<String> food = new ArrayList<String>();
+    static String food[] = new String[8];
+    int foodcnt = 0;
+
     View view;
     Button btn1,btn2;
     ImageView inside,outside;
+    TextView tv1;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.offline, container, false);
-
         inside = (ImageView)view.findViewById(R.id.spinner_inside);
         outside = (ImageView)view.findViewById(R.id.spinner_outside);
+        tv1 = (TextView)view.findViewById(R.id.textView);
         //재자리회전
         btn1 = (Button) view.findViewById(R.id.button);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (food.size() <= 0) {
-                    OffLine_Fragment.food.clear();
+                if (food[0] == null) {
                     Snackbar.make(getView(), "입력부터 하세요!", Snackbar.LENGTH_LONG).show();
+
                 } else {
                     RotateAnimation rotateAnimation = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
                     rotateAnimation.setInterpolator(new LinearInterpolator());
                     rotateAnimation.setRepeatCount(0);
-                    rotateAnimation.setDuration(5000);
+                    rotateAnimation.setDuration(2000);
                     inside.startAnimation(rotateAnimation);//회전 에니메이션
                     final Timer timer = new Timer();
 
                     final TimerTask myTask = new TimerTask() {
                         @Override
                         public void run() {
-                            timer.cancel();
-                            int a = (int) (Math.random() * food.size());
-                            if (a == 0) {
-                                Snackbar.make(getView(), food.get(0) +
-                                        "이(가) 선택되었습니다.", Snackbar.LENGTH_LONG).show();
-                            } else if (a == 1) {
-                                Snackbar.make(getView(), food.get(1) +
-                                        "이(가) 선택되었습니다.", Snackbar.LENGTH_LONG).show();
-                            } else if (a == 2) {
-                                Snackbar.make(getView(), food.get(2) +
-                                        "이(가) 선택되었습니다.", Snackbar.LENGTH_LONG).show();
-                            } else if (a == 3) {
-                                Snackbar.make(getView(), food.get(3) +
-                                        "이(가) 선택되었습니다.", Snackbar.LENGTH_LONG).show();
-                            } else if (a == 4) {
-                                Snackbar.make(getView(), food.get(4) +
-                                        "이(가) 선택되었습니다.", Snackbar.LENGTH_LONG).show();
-                            } else if (a == 5) {
-                                Snackbar.make(getView(), food.get(5) +
-                                        "이(가) 선택되었습니다.", Snackbar.LENGTH_LONG).show();
-                            } else if (a == 6) {
-                                Snackbar.make(getView(), food.get(6) +
-                                        "이(가) 선택되었습니다.", Snackbar.LENGTH_LONG).show();
-                            } else if (a == 7) {
-                                Snackbar.make(getView(), food.get(7) +
-                                        "이(가) 선택되었습니다.", Snackbar.LENGTH_LONG).show();
-                            }
+//                            timer.cancel();
+                            for(int i = 0 ; i < 8 ; i++)
+                                if(!food[i].equals("")) foodcnt++;
+                            Random r = new Random();
+                            final int a = r.nextInt(foodcnt);
 
+                            try {
+
+                                runOnUiThread(new Runnable(){
+                                    @Override
+                                    public void run(){
+                                        tv1.setVisibility(View.VISIBLE);
+                                        tv1.setText(food[a]+"이(가) 선택되었습니다!");
+                                    }
+                                });
+
+                                final Timer timer = new Timer();
+
+                                TimerTask myTask = new TimerTask() {
+                                    @Override
+                                    public void run() {
+                                        runOnUiThread(new Runnable(){
+                                            @Override
+                                            public void run(){
+                                                tv1.setVisibility(getView().GONE);
+                                                tv1.setText("");
+                                            }
+                                        });
+                                    }
+                                };
+                                timer.schedule(myTask, 1800);
+                            }catch (Exception e){
+                                Toast.makeText(getActivity(), (CharSequence) e,Toast.LENGTH_LONG).show();
+                            }
+                            foodcnt = 0;
                         }
 
                     };
-                    timer.schedule(myTask, 5000);
-
-
+                    timer.schedule(myTask, 2000);
                 }
             }
         });

@@ -1,6 +1,8 @@
 package com.gms.moongoon.choice_moongoon;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.Image;
 import android.os.Bundle;
@@ -21,6 +23,7 @@ import android.widget.Toast;
 
 import com.gms.moongoon.choice_moongoon.GCM_Manage.GCM_SERVER;
 import com.gms.moongoon.choice_moongoon.GET_POST.GetServer;
+import com.gms.moongoon.choice_moongoon.splash.guidesplash;
 import com.gms.moongoon.choice_moongoon.tools.DecodeJson;
 import com.gms.moongoon.choice_moongoon.tools.Loading_Image;
 
@@ -36,9 +39,10 @@ import static com.google.android.gms.internal.zzhl.runOnUiThread;
  * Created by user on 2015-08-08.
  */
 public class OnLine_Fragment extends Fragment implements View.OnClickListener {
-    ImageView imageView;
+    ImageView imageView,img;
     ImageView character_online, fish_online;
     TextView tv1;
+    Button btn1,btn2;
     AnimationDrawable character_online_frameAnimationDrawable, fish_online_frameAnimationDrawable;
 
     Button mainSend, receiveAnswer, receiveQuestion;
@@ -51,7 +55,26 @@ public class OnLine_Fragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.online, container, false);
+        img=(ImageView)view.findViewById(R.id.character_online);
 
+
+        btn1 = (Button)view.findViewById(R.id.receive_answer);
+        btn2 = (Button)view.findViewById(R.id.receive_question);
+
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(view,"아직 지원되지 않습니다.",Snackbar.LENGTH_SHORT).show();
+            }
+        });
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(view,"아직 지원되지 않습니다.",Snackbar.LENGTH_SHORT).show();
+            }
+        });
+         character_online_frameAnimationDrawable = (AnimationDrawable)img.getDrawable();
+        character_online_frameAnimationDrawable.start();
         view.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         tv1 = (TextView)view.findViewById(R.id.mtalk);
         init();
@@ -129,7 +152,7 @@ public class OnLine_Fragment extends Fragment implements View.OnClickListener {
                             });
                         }
                     };
-                    timer.schedule(myTask, 1300);
+                    timer.schedule(myTask, 1800);
                 }catch (Exception e){
                     Toast.makeText(getActivity(), (CharSequence) e,Toast.LENGTH_LONG).show();
                 }
@@ -143,8 +166,5 @@ public class OnLine_Fragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.backGround_online).setBackground(null);
         System.gc();
     }
-
-
-
 
 }
