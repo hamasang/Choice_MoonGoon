@@ -60,4 +60,20 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="189dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/mtalk"
+        android:textStyle="bold"
+        android:textColor="#ff5b50"
+        android:background="@drawable/speech_bubble_md"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/receive_question"
+        android:layout_alignStart="@+id/receive_question"
+        android:text="sdfsf"
+        android:paddingTop="34dp"
+        android:paddingLeft="15dp"
+        android:visibility="gone" />
 </RelativeLayout>

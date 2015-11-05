@@ -14,7 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gms.moongoon.choice_moongoon.GCM_Manage.GCM_SERVER;
 import com.gms.moongoon.choice_moongoon.GET_POST.GetServer;
@@ -24,12 +27,18 @@ import com.gms.moongoon.choice_moongoon.tools.Loading_Image;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
+import static com.google.android.gms.internal.zzhl.runOnUiThread;
+
 /**
  * Created by user on 2015-08-08.
  */
 public class OnLine_Fragment extends Fragment implements View.OnClickListener {
     ImageView imageView;
     ImageView character_online, fish_online;
+    TextView tv1;
     AnimationDrawable character_online_frameAnimationDrawable, fish_online_frameAnimationDrawable;
 
     Button mainSend, receiveAnswer, receiveQuestion;
@@ -44,6 +53,7 @@ public class OnLine_Fragment extends Fragment implements View.OnClickListener {
         view = inflater.inflate(R.layout.online, container, false);
 
         view.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        tv1 = (TextView)view.findViewById(R.id.mtalk);
         init();
 
         handler = new Handler() {
@@ -83,13 +93,15 @@ public class OnLine_Fragment extends Fragment implements View.OnClickListener {
 //
 //        fish_online_frameAnimationDrawable = (AnimationDrawable) fish_online.getBackground();
 //        fish_online_frameAnimationDrawable.start();
-
+        character_online = (ImageView)view.findViewById(R.id.character_online);
+        character_online.setOnClickListener(this);
         mainSend = (Button) view.findViewById(R.id.main_send);
         mainSend.setOnClickListener(this);
         receiveAnswer = (Button) view.findViewById(R.id.receive_answer);
         receiveAnswer.setOnClickListener(this);
         receiveQuestion = (Button) view.findViewById(R.id.receive_question);
         receiveQuestion.setOnClickListener(this);
+
     }
 
     @Override
@@ -98,6 +110,29 @@ public class OnLine_Fragment extends Fragment implements View.OnClickListener {
             case R.id.main_send:
                 Snackbar.make(view, "유저목록을 가져오고 있습니다. 기다려주십시오", Snackbar.LENGTH_SHORT).show();
                 new GetServer().execute();
+                break;
+            case R.id.character_online:
+                tv1.setVisibility(View.VISIBLE);
+                tv1.setText("나를 누르지 말라구!");
+                try {
+                    final Timer timer = new Timer();
+
+                    TimerTask myTask = new TimerTask() {
+                        @Override
+                        public void run() {
+                            runOnUiThread(new Runnable(){
+                                @Override
+                                public void run(){
+                                    tv1.setVisibility(View.GONE);
+                                    tv1.setText("");
+                                }
+                            });
+                        }
+                    };
+                    timer.schedule(myTask, 1300);
+                }catch (Exception e){
+                    Toast.makeText(getActivity(), (CharSequence) e,Toast.LENGTH_LONG).show();
+                }
                 break;
         }
     }
