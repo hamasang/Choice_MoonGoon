@@ -24,6 +24,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gms.moongoon.choice_moongoon.GCM_Manage.GcmQuickStartPreference;
 import com.gms.moongoon.choice_moongoon.GCM_Manage.GcmRegisterIntentService;
@@ -64,12 +65,10 @@ public class MainActivity extends AppCompatActivity implements MaterialTabListen
         setContentView(R.layout.activity_main);
         view = getWindow().getDecorView();
 
-        SharedPreferences prefs = getSharedPreferences("Pref",MODE_PRIVATE);
-        boolean guicheck = (prefs.getBoolean("GUIDE", true));
-        if(prefs.getBoolean("GUIDE", false)){
-            Intent intents = new Intent(MainActivity.this, guidesplash.class);
-            startActivity(intents);
-        }
+//        if(gu.equals("0")){
+//            Intent intents = new Intent(MainActivity.this, guidesplash.class);
+//            startActivity(intents);
+//        }
 
         pref = getSharedPreferences("VER", MODE_PRIVATE);
         edit = pref.edit();

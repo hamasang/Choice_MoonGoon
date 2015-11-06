@@ -20,25 +20,24 @@
         android:scaleType="fitEnd"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/receive_answer" />
 
     <Button
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:id="@+id/main_send"
         android:background="@drawable/ic_online"
-        android:layout_marginTop="44dp"
-        android:layout_alignTop="@+id/character_online"
+        android:layout_above="@+id/character_online"
         android:layout_toLeftOf="@+id/receive_answer"
-        android:layout_toStartOf="@+id/receive_answer"
-        android:layout_marginRight="30dp" />
+        android:layout_toStartOf="@+id/receive_answer" />
 
     <Button
         android:layout_width="75dp"
         android:layout_height="150dp"
         android:id="@+id/receive_answer"
         android:background="@drawable/ic_receive"
-        android:layout_alignTop="@+id/character_online"
+        android:layout_alignBottom="@+id/fish_online"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -75,5 +74,74 @@
         android:text="sdfsf"
         android:paddingTop="34dp"
         android:paddingLeft="15dp"
+        android:visibility="gone"
+        android:paddingRight="15dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="질문받기"
+        android:id="@+id/guide1"
+        android:background="@drawable/mtalk"
+        android:paddingLeft="40dp"
+        android:paddingRight="20dp"
+        android:textColor="#000"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:visibility="gone"
+        android:layout_above="@+id/main_send"
+        android:layout_toLeftOf="@+id/main_send"
+        android:layout_toStartOf="@+id/main_send" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="질문 보내기"
+        android:id="@+id/guide2"
+        android:background="@drawable/guide1"
+        android:textColor="#000"
+        android:paddingBottom="20dp"
+        android:paddingTop="50dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:visibility="gone"
+        android:layout_below="@+id/main_send"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="답변받기"
+        android:id="@+id/guide3"
+        android:textColor="#000"
+        android:background="@drawable/speech_bubble_md"
+        android:paddingTop="25dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingBottom="20dp"
+        android:layout_below="@+id/mtalk"
+        android:layout_alignLeft="@+id/main_send"
+        android:layout_alignStart="@+id/main_send"
         android:visibility="gone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="까칠한 선택의신 문군"
+        android:id="@+id/guide4"
+        android:layout_marginBottom="44dp"
+        android:textColor="#000"
+        android:background="@drawable/guide1"
+        android:autoText="false"
+        android:paddingTop="53dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="20dp"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/mtalk"
+        android:layout_toEndOf="@+id/mtalk" />
 </RelativeLayout>
