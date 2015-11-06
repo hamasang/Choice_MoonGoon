@@ -26,9 +26,9 @@ public class GcmListenerService extends com.google.android.gms.gcm.GcmListenerSe
         String title = data.getString("msg");
 
         if (data.getString("isQuestion").equals("yes")){
-            sendNotification(title,title);
+            sendNotification(title,null);
         }else{
-            sendNotification(title,title);
+            sendNotification(title,null);
         }
 
     }
