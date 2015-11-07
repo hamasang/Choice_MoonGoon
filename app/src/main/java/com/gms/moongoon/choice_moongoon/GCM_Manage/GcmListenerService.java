@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,9 +27,9 @@ public class GcmListenerService extends com.google.android.gms.gcm.GcmListenerSe
         String title = data.getString("msg");
 
         if (data.getString("isQuestion").equals("yes")){
-            sendNotification(title,null);
+            sendNotification(title,title);
         }else{
-            sendNotification(title,null);
+            sendNotification(title,title);
         }
 
     }
@@ -40,6 +41,13 @@ public class GcmListenerService extends com.google.android.gms.gcm.GcmListenerSe
                 PendingIntent.FLAG_ONE_SHOT);
 
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        //알림 on
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        if (pref.getBoolean("sound", true)) {
+//            SharedPreferences.Editor editor = pref.edit();
+//            editor.putBoolean("noti", false);
+//            editor.apply();
+
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.right_arrow)
                 .setContentTitle(title = URLDecoder.decode(title))
@@ -52,5 +60,20 @@ public class GcmListenerService extends com.google.android.gms.gcm.GcmListenerSe
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+
+        }else{
+            //알림off
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                    .setSmallIcon(R.drawable.right_arrow)
+                    .setContentTitle(title = URLDecoder.decode(title))
+                    .setContentText(message = URLDecoder.decode(message))
+                    .setAutoCancel(true)
+                    .setContentIntent(pendingIntent);
+
+            NotificationManager notificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+            notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+        }
     }
 }
