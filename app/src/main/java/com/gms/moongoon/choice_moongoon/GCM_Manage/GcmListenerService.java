@@ -14,8 +14,13 @@ import android.support.v4.app.NotificationCompat;
 
 import com.gms.moongoon.choice_moongoon.MainActivity;
 import com.gms.moongoon.choice_moongoon.R;
+import com.gms.moongoon.choice_moongoon.SendActivity;
+import com.gms.moongoon.choice_moongoon.dapjang;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
+
 /*
 * 수정일 2015-11-03
  */
@@ -24,8 +29,8 @@ public class GcmListenerService extends com.google.android.gms.gcm.GcmListenerSe
 
     @Override
     public void onMessageReceived(String from, Bundle data) {
-        String title = data.getString("msg");
-
+        String title = URLDecoder.decode(data.getString("msg"));
+//        dapjang.naeyong = title;
         if (data.getString("isQuestion").equals("yes")){
             sendNotification(title,title);
         }else{
@@ -35,10 +40,13 @@ public class GcmListenerService extends com.google.android.gms.gcm.GcmListenerSe
     }
 
     private void sendNotification(String title, String message) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, dapjang.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
+
+
 
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         //알림 on

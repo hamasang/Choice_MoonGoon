@@ -37,6 +37,9 @@
         <activity android:name=".SendActivity"
             android:orientation="vertical">
         </activity>
+        <activity android:name=".dapjang"
+            android:orientation="vertical">
+        </activity>
         <activity
             android:name=".input"
             android:windowSoftInputMode="adjustResize|adjustPan"

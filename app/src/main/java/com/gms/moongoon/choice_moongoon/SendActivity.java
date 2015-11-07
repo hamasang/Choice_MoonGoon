@@ -27,7 +27,6 @@ public class SendActivity extends Activity {
     int index = 1;
     SecretMatchingTextView secretMatchingTextView;
     EditText sendEditText;
-
     Button cancle,send;
 
     @Override
@@ -70,14 +69,13 @@ public class SendActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-                secretMatchingTextView.setText(charSequence);
 
-//                Log.e("length", secretMatchingTextView.getText().length() + "");
-                if (secretMatchingTextView.getText().length() == (30 * index)) {
-                    secretMatchingTextView.setMaxLines(index + 1);
-                    index++;
-//                    Log.e("length", secretMatchingTextView.getText().length() + " / " + index);
-                }
+                    secretMatchingTextView.setText(charSequence);
+                    if (secretMatchingTextView.getText().length() == (30 * index)) {
+                        secretMatchingTextView.setMaxLines(index + 1);
+                        index++;
+                        //                  Log.e("length", secretMatchingTextView.getText().length() + " / " + index);
+                    }
             }
 
             @Override
