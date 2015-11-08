@@ -1,25 +1,21 @@
 package com.gms.moongoon.choice_moongoon.GCM_Manage;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
+import android.widget.Toast;
 
 import com.gms.moongoon.choice_moongoon.MainActivity;
 import com.gms.moongoon.choice_moongoon.R;
-import com.gms.moongoon.choice_moongoon.SendActivity;
-import com.gms.moongoon.choice_moongoon.dapjang;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 
 /*
 * 수정일 2015-11-03
@@ -40,17 +36,19 @@ public class GcmListenerService extends com.google.android.gms.gcm.GcmListenerSe
     }
 
     private void sendNotification(String title, String message) {
-        Intent intent = new Intent(this, dapjang.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        SharedPreferences pref = this.getApplicationContext().getSharedPreferences("MyPref", 0);
+        SharedPreferences.Editor editor=pref.edit();
+        Intent intss = new Intent(this, MainActivity.class);
+        Intent ints = new Intent(String.valueOf(editor.putString("titles", title)) + intss);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */,ints,
                 PendingIntent.FLAG_ONE_SHOT);
+        editor.apply();
 
 
 
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         //알림 on
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         if (pref.getBoolean("sound", true)) {
 //            SharedPreferences.Editor editor = pref.edit();
 //            editor.putBoolean("noti", false);
@@ -59,7 +57,7 @@ public class GcmListenerService extends com.google.android.gms.gcm.GcmListenerSe
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.right_arrow)
                 .setContentTitle(title = URLDecoder.decode(title))
-                .setContentText(message = URLDecoder.decode(message))
+                .setContentText("클릭후 앱을 실행하여 답장하세요!")
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);
@@ -74,7 +72,7 @@ public class GcmListenerService extends com.google.android.gms.gcm.GcmListenerSe
             NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                     .setSmallIcon(R.drawable.right_arrow)
                     .setContentTitle(title = URLDecoder.decode(title))
-                    .setContentText(message = URLDecoder.decode(message))
+                    .setContentText("클릭하셔야 답장이 가능합니다.")
                     .setAutoCancel(true)
                     .setContentIntent(pendingIntent);
 

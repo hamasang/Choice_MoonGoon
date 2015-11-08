@@ -131,8 +131,13 @@ public class OffLine_Fragment extends Fragment {
                                 runOnUiThread(new Runnable(){
                                     @Override
                                     public void run(){
-                                        tv1.setVisibility(View.VISIBLE);
-                                        tv1.setText(food[a]+"이(가) 선택되었습니다!");
+                                        if(food[a].length() <= 0){
+                                            tv1.setVisibility(View.VISIBLE);
+                                            tv1.setText("다시~!");
+                                        }else{
+                                            tv1.setVisibility(View.VISIBLE);
+                                            tv1.setText(food[a]+"이(가) 선택되었습니다!");
+                                        }
                                     }
                                 });
 
@@ -150,7 +155,7 @@ public class OffLine_Fragment extends Fragment {
                                         });
                                     }
                                 };
-                                timer3.schedule(myTask3, 1800);
+                                timer3.schedule(myTask3, 2300);
                             }catch (Exception e){
                                 Toast.makeText(getActivity(), (CharSequence) e,Toast.LENGTH_LONG).show();
                             }

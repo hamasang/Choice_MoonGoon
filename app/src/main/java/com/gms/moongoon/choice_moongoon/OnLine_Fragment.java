@@ -45,7 +45,7 @@ public class OnLine_Fragment extends Fragment implements View.OnClickListener {
     Button btn1,btn2;
     AnimationDrawable character_online_frameAnimationDrawable, fish_online_frameAnimationDrawable;
 
-    Button mainSend, receiveAnswer, receiveQuestion;
+    Button mainSend,mainSends, receiveAnswer, receiveQuestion;
     View view;
     String[] mtalks = {"아야!","나는 건드리지 마!", "무슨 일 있어?", "내 위에 있는 물고기를 눌러줘!"};
 
@@ -61,6 +61,7 @@ public class OnLine_Fragment extends Fragment implements View.OnClickListener {
         g2 = (TextView)view.findViewById(R.id.guide2);
         g3 = (TextView)view.findViewById(R.id.guide3);
         g4 = (TextView)view.findViewById(R.id.guide4);
+
         SharedPreferences pref = this.getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
         if (pref.getBoolean("first", true)) {
             SharedPreferences.Editor editor=pref.edit();
@@ -167,12 +168,14 @@ public class OnLine_Fragment extends Fragment implements View.OnClickListener {
                 }
             };
             timer1.schedule(myTask4, 5000);
+
+
+
+
 //            Intent intent=new Intent(getActivity(), guidesplash.class);
 //            startActivity(intent);
         }
 
-         character_online_frameAnimationDrawable = (AnimationDrawable)img.getDrawable();
-        character_online_frameAnimationDrawable.start();
         view.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         tv1 = (TextView)view.findViewById(R.id.mtalk);
         init();
@@ -202,18 +205,18 @@ public class OnLine_Fragment extends Fragment implements View.OnClickListener {
     }
 
     private void init() {
-//        imageView = (ImageView) view.findViewById(R.id.backGround_online);
+        imageView = (ImageView) view.findViewById(R.id.backGround_online);
 //
-//        character_online = (ImageView) view.findViewById(R.id.character_online);
+character_online = (ImageView) view.findViewById(R.id.character_online);
 //
-//        character_online_frameAnimationDrawable = (AnimationDrawable) character_online.getDrawable();
-//        character_online_frameAnimationDrawable.start();
+        character_online_frameAnimationDrawable = (AnimationDrawable) character_online.getDrawable();
+        character_online_frameAnimationDrawable.start();
 
-//        fish_online = (ImageView) view.findViewById(R.id.fish_online);
-//        fish_online.setBackgroundResource(R.drawable.fish_anim);
-//
-//        fish_online_frameAnimationDrawable = (AnimationDrawable) fish_online.getBackground();
-//        fish_online_frameAnimationDrawable.start();
+        fish_online = (ImageView) view.findViewById(R.id.fish_online);
+        fish_online.setBackgroundResource(R.drawable.fish_anim);
+
+        fish_online_frameAnimationDrawable = (AnimationDrawable) fish_online.getBackground();
+        fish_online_frameAnimationDrawable.start();
         character_online = (ImageView)view.findViewById(R.id.character_online);
         character_online.setOnClickListener(this);
         mainSend = (Button) view.findViewById(R.id.main_send);
@@ -228,15 +231,17 @@ public class OnLine_Fragment extends Fragment implements View.OnClickListener {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(view,"답변받기는 아직 지원되지 않습니다.",Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(view, "답변받기는 아직 지원되지 않습니다.", Snackbar.LENGTH_SHORT).show();
             }
         });
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(view,"질문받기는 아직 지원되지 않습니다.",Snackbar.LENGTH_SHORT).show();
-            }
-        });
+        SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
+        String asas = pref.getString("titles", "");
+        if(asas.toString().equals("")){
+            receiveQuestion.setVisibility(View.GONE);
+        }else if(pref.getBoolean("first", true)) {
+            receiveQuestion.setVisibility(View.VISIBLE);
+        }
+
 
     }
 
@@ -244,6 +249,10 @@ public class OnLine_Fragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.main_send:
+                Snackbar.make(view, "유저목록을 가져오고 있습니다. 기다려주십시오", Snackbar.LENGTH_SHORT).show();
+                new GetServer().execute();
+                break;
+            case R.id.receive_question:
                 Snackbar.make(view, "유저목록을 가져오고 있습니다. 기다려주십시오", Snackbar.LENGTH_SHORT).show();
                 new GetServer().execute();
                 break;
