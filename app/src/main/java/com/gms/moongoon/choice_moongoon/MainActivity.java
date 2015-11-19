@@ -65,11 +65,6 @@ public class MainActivity extends AppCompatActivity implements MaterialTabListen
         setContentView(R.layout.activity_main);
         view = getWindow().getDecorView();
 
-//        if(gu.equals("0")){
-//            Intent intents = new Intent(MainActivity.this, guidesplash.class);
-//            startActivity(intents);
-//        }
-
         pref = getSharedPreferences("VER", MODE_PRIVATE);
         edit = pref.edit();
 
@@ -292,7 +287,7 @@ public class MainActivity extends AppCompatActivity implements MaterialTabListen
     Drawable getIcon(int position) {
         switch (position) {
             case 0:
-                return res.getDrawable(R.drawable.ic_online);
+                return res.getDrawable(R.drawable.ic_online) ;
             case 1:
                 return res.getDrawable(R.drawable.ic_offline);
             case 2:

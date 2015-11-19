@@ -27,7 +27,7 @@ public class resend extends Activity {
     Bundle sendExtra;
     int splash = 0;
     int index = 1;
-    SecretMatchingTextView secretMatchingTextView;
+    SecretMatchingTextView secretMatchingTextViews;
     EditText sendEditText;
     Button cancle,send,dapjang;
 
@@ -36,27 +36,8 @@ public class resend extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resend);
         dapjang = (Button)findViewById(R.id.button4);
+        sendEditText = (EditText) findViewById(R.id.sendEditTexts);
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
-        String asas = pref.getString("titles", "");
-        if(asas.toString().equals("")){
-            dapjang.setVisibility(View.GONE);
-        }else{
-            dapjang.setVisibility(View.VISIBLE);
-        }
-
-
-        dapjang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
-                sendEditText.setText(pref.getString("titles","") + "\n=======답장=======\n" +sendEditText.getText().toString());
-                SharedPreferences.Editor editor = pref.edit();
-                editor.remove("titles");
-                editor.apply();
-                dapjang.setVisibility(View.GONE);
-            }
-        });
-
 
         if(splash <= 0){
             Intent intents = new Intent(resend.this, inksplash.class);
@@ -71,21 +52,22 @@ public class resend extends Activity {
 
         getWindow().getDecorView().setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 
-        this.secretMatchingTextView = (SecretMatchingTextView) findViewById(R.id.matchingSecretTextViews);
-        this.secretMatchingTextView.setIsVisible(true);
-        this.secretMatchingTextView.setLines(10);
+        this.secretMatchingTextViews = (SecretMatchingTextView) findViewById(R.id.matchingSecretTextViews);
+        this.secretMatchingTextViews.setIsVisible(true);
+        this.secretMatchingTextViews.setLines(10);
+        this.secretMatchingTextViews.setText(pref.getString("titles",""));
 
 
-        sendEditText = (EditText) findViewById(R.id.sendEditTexts);
 
-        this.secretMatchingTextView.setOnClickListener(new View.OnClickListener() {
+
+        this.secretMatchingTextViews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                secretMatchingTextView.toggle();
                 sendEditText.requestFocus();
             }
         });
-        AutofitHelper.create(secretMatchingTextView);
+        AutofitHelper.create(secretMatchingTextViews);
         sendEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
@@ -94,10 +76,10 @@ public class resend extends Activity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-
-                secretMatchingTextView.setText(charSequence);
-                if (secretMatchingTextView.getText().length() == (30 * index)) {
-                    secretMatchingTextView.setMaxLines(index + 1);
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+                secretMatchingTextViews.setText(pref.getString("titles","") + charSequence);
+                if (secretMatchingTextViews.getText().length() == (30 * index)) {
+                    secretMatchingTextViews.setMaxLines(index + 1);
                     index++;
                     //                  Log.e("length", secretMatchingTextView.getText().length() + " / " + index);
                 }
@@ -120,12 +102,15 @@ public class resend extends Activity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
                 Intent intents = new Intent(resend.this, sendsplash.class);
                 startActivity(intents);
-                sendExtra.putString("res", secretMatchingTextView.getText().toString());
+                sendExtra.putString("res", "======답장======\n" + secretMatchingTextViews.getText().toString());
                 sendExtra.putBoolean("isQuestion", true);
                 sendIntent.putExtras(sendExtra);
                 setResult(0, sendIntent);
+
+
                 finish();
             }
         });

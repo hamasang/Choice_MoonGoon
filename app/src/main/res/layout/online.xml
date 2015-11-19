@@ -21,23 +21,22 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/receive_answer" />
+        android:layout_below="@+id/fish_online" />
 
     <Button
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:id="@+id/main_send"
         android:background="@drawable/ic_online"
-        android:layout_above="@+id/character_online"
-        android:layout_toLeftOf="@+id/receive_answer"
-        android:layout_toStartOf="@+id/receive_answer" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp" />
 
     <Button
         android:layout_width="75dp"
         android:layout_height="150dp"
         android:id="@+id/receive_answer"
         android:background="@drawable/ic_receive"
-        android:layout_alignBottom="@+id/fish_online"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -46,9 +45,7 @@
         android:layout_height="150dp"
         android:id="@+id/receive_question"
         android:background="@drawable/ic_bottle"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="39dp"
-        android:layout_alignBottom="@+id/main_send"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
     <ImageView
@@ -63,85 +60,42 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/mtalk"
-        android:textStyle="bold"
-        android:textColor="#ff5b50"
-        android:background="@drawable/speech_bubble_md"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/receive_question"
-        android:layout_alignStart="@+id/receive_question"
-        android:text="sdfsf"
-        android:paddingTop="34dp"
-        android:paddingLeft="15dp"
-        android:visibility="gone"
-        android:paddingRight="15dp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="질문받기"
-        android:id="@+id/guide1"
-        android:background="@drawable/mtalk"
-        android:paddingLeft="40dp"
-        android:paddingRight="20dp"
-        android:textColor="#000"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:visibility="gone"
-        android:layout_above="@+id/main_send"
-        android:layout_toLeftOf="@+id/main_send"
-        android:layout_toStartOf="@+id/main_send" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="질문 보내기"
-        android:id="@+id/guide2"
-        android:background="@drawable/guide1"
-        android:textColor="#000"
-        android:paddingBottom="20dp"
-        android:paddingTop="50dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:visibility="gone"
-        android:layout_below="@+id/main_send"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="답변받기"
-        android:id="@+id/guide3"
-        android:textColor="#000"
-        android:background="@drawable/speech_bubble_md"
-        android:paddingTop="25dp"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:paddingBottom="20dp"
-        android:layout_below="@+id/mtalk"
-        android:layout_alignLeft="@+id/main_send"
-        android:layout_alignStart="@+id/main_send"
-        android:visibility="gone" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="까칠한 선택의신 문군"
-        android:id="@+id/guide4"
-        android:layout_marginBottom="44dp"
         android:textColor="#000"
         android:background="@drawable/guide1"
-        android:autoText="false"
-        android:paddingTop="53dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingBottom="20dp"
-        android:visibility="gone"
+        android:gravity="center_vertical|center_horizontal"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/mtalk"
-        android:layout_toEndOf="@+id/mtalk" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="41dp"
+        android:visibility="gone"
+        android:text="165156156165165"
+        android:singleLine="false"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/textView3"
+            android:textColor="#000"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/dapview"
+            android:text="=====답장=====\n"
+            android:gravity="center_vertical|center_horizontal"
+            android:paddingLeft="70dp"
+            android:paddingRight="70dp"
+            android:maxLines="4"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
 </RelativeLayout>

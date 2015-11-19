@@ -32,3 +32,9 @@ dependencies {
     compile files('libs/gcm-server.jar')
     compile files('libs/json-simple-1.1.1.jar')
 }
+subprojects{
+    repositories{
+        mavenCentral()
+        maven { url 'http://devrepo.kakao.com:8088/nexus/content/groups/public/'}
+    }
+}

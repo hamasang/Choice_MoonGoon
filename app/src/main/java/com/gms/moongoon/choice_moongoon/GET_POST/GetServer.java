@@ -52,10 +52,15 @@ public class GetServer extends AsyncTask<Void, Void, String> {
         Bundle bundle = new Bundle();
         Message message;
         if (res != null){
-
-            bundle.putString("res", res);
-            message = Message.obtain(OnLine_Fragment.handler, 0);
-            message.setData(bundle);
+            if(OnLine_Fragment.mssg == 1){
+                bundle.putString("res", res);
+                message = Message.obtain(OnLine_Fragment.handler, 2);
+                message.setData(bundle);
+            }else{
+                bundle.putString("res", res);
+                message = Message.obtain(OnLine_Fragment.handler, 0);
+                message.setData(bundle);
+            }
         }else{
             message = Message.obtain(OnLine_Fragment.handler, 1);
             bundle.putString("res", null);
@@ -63,4 +68,5 @@ public class GetServer extends AsyncTask<Void, Void, String> {
         }
         OnLine_Fragment.handler.sendMessage(message);
     }
+
 }

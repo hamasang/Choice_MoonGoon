@@ -1,6 +1,7 @@
 package com.gms.moongoon.choice_moongoon;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.design.widget.Snackbar;
@@ -58,6 +59,8 @@ public class FirstUserInfo extends AppCompatActivity implements RadioButton.OnCl
         age_6 = (RadioButton) findViewById(R.id.age_oldAge);
         age_6.setOnClickListener(this);
 
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        final SharedPreferences.Editor editor=pref.edit();
 
         startUserinfo = (Button) findViewById(R.id.startMain);
         startUserinfo.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +86,6 @@ public class FirstUserInfo extends AppCompatActivity implements RadioButton.OnCl
                 radioGroup2.setOnCheckedChangeListener(null); // remove the listener before clearing so we don't throw that stackoverflow exception(like Vladimir Volodin pointed out)
                 radioGroup2.clearCheck(); // clear the second RadioGroup!
                 radioGroup2.setOnCheckedChangeListener(listener2); //reset the listener
-
             }
         }
     };
@@ -96,7 +98,6 @@ public class FirstUserInfo extends AppCompatActivity implements RadioButton.OnCl
                 radioGroup1.setOnCheckedChangeListener(null);
                 radioGroup1.clearCheck();
                 radioGroup1.setOnCheckedChangeListener(listener1);
-
             }
         }
     };
@@ -110,31 +111,49 @@ public class FirstUserInfo extends AppCompatActivity implements RadioButton.OnCl
     @Override
     public void onClick(View v) {
         int action = v.getId();
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        final SharedPreferences.Editor editor=pref.edit();
 
         switch (action) {
             case R.id.sexWomen:
                 sex = "1";
+                editor.putInt("sex",0);
+                editor.apply();
                 break;
             case R.id.sexMen:
                 sex = "2";
+                editor.putInt("sex",1);
+                editor.apply();
                 break;
             case R.id.ageElementry:
                 age = "0";
+                editor.putInt("age",0);
+                editor.apply();
                 break;
             case R.id.age_middle:
                 age = "1";
+                editor.putInt("age",1);
+                editor.apply();
                 break;
             case R.id.age_high:
                 age = "2";
+                editor.putInt("age",2);
+                editor.apply();
                 break;
             case R.id.age_youth:
                 age = "3";
+                editor.putInt("age",3);
+                editor.apply();
                 break;
             case R.id.age_middleAge:
                 age = "4";
+                editor.putInt("age",4);
+                editor.apply();
                 break;
             case R.id.age_oldAge:
                 age = "5";
+                editor.putInt("age",5);
+                editor.apply();
                 break;
 
         }

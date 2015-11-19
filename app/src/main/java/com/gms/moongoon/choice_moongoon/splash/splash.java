@@ -32,4 +32,5 @@ public class splash extends AppCompatActivity{
         timer.schedule(myTask, 1500);
 
     }
+
 }

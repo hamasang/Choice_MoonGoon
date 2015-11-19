@@ -41,7 +41,7 @@ import static com.google.android.gms.internal.zzhl.runOnUiThread;
 public class OnLine_Fragment extends Fragment implements View.OnClickListener {
     ImageView imageView,img;
     ImageView character_online, fish_online;
-    TextView tv1,g1,g2,g3,g4;
+    TextView tv1,tv2;
     Button btn1,btn2;
     AnimationDrawable character_online_frameAnimationDrawable, fish_online_frameAnimationDrawable;
 
@@ -49,137 +49,28 @@ public class OnLine_Fragment extends Fragment implements View.OnClickListener {
     View view;
     String[] mtalks = {"아야!","나는 건드리지 마!", "무슨 일 있어?", "내 위에 있는 물고기를 눌러줘!"};
 
-
+    public static int mssg = 0;
     public static Handler handler;
+    public static String pus = null;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.online, container, false);
         img=(ImageView)view.findViewById(R.id.character_online);
-        g1 = (TextView)view.findViewById(R.id.guide1);
-        g2 = (TextView)view.findViewById(R.id.guide2);
-        g3 = (TextView)view.findViewById(R.id.guide3);
-        g4 = (TextView)view.findViewById(R.id.guide4);
-
-        SharedPreferences pref = this.getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
-        if (pref.getBoolean("first", true)) {
-            SharedPreferences.Editor editor=pref.edit();
-            editor.putBoolean("first", false);
-            editor.apply();
-
-            runOnUiThread(new Runnable(){
-                @Override
-                public void run(){
-                    g1.setVisibility(View.VISIBLE);
-                }
-            });
-
-            final Timer timer1 = new Timer();
-
-            TimerTask myTask1 = new TimerTask() {
-                @Override
-                public void run() {
-                    runOnUiThread(new Runnable(){
-                        @Override
-                        public void run(){
-                            g1.setVisibility(getView().GONE);
-                        }
-                    });
-                }
-            };
-            timer1.schedule(myTask1, 9000);
-            runOnUiThread(new Runnable(){
-                @Override
-                public void run(){
-                    g1.setVisibility(View.VISIBLE);
-                }
-            });
-
-
-
-            //두번째;; 힘들다;
-            runOnUiThread(new Runnable(){
-                @Override
-                public void run(){
-                    g2.setVisibility(View.VISIBLE);
-                }
-            });
-
-
-            final Timer timer2 = new Timer();
-
-            TimerTask myTask2 = new TimerTask() {
-                @Override
-                public void run() {
-                    runOnUiThread(new Runnable(){
-                        @Override
-                        public void run(){
-                            g2.setVisibility(getView().GONE);
-                        }
-                    });
-                }
-            };
-            timer2.schedule(myTask2, 7000);
-
-
-            //세번째
-            runOnUiThread(new Runnable(){
-                @Override
-                public void run(){
-                    g3.setVisibility(View.VISIBLE);
-                }
-            });
-            final Timer timer3 = new Timer();
-
-            TimerTask myTask3 = new TimerTask() {
-                @Override
-                public void run() {
-                    runOnUiThread(new Runnable(){
-                        @Override
-                        public void run(){
-                            g3.setVisibility(getView().GONE);
-                        }
-                    });
-                }
-            };
-            timer3.schedule(myTask3, 6000);
-
-
-            //네번째
-            runOnUiThread(new Runnable(){
-                @Override
-                public void run(){
-                    g4.setVisibility(View.VISIBLE);
-                }
-            });
-
-            final Timer timer4 = new Timer();
-
-            TimerTask myTask4 = new TimerTask() {
-                @Override
-                public void run() {
-                    runOnUiThread(new Runnable(){
-                        @Override
-                        public void run(){
-                            g4.setVisibility(getView().GONE);
-                        }
-                    });
-                }
-            };
-            timer1.schedule(myTask4, 5000);
-
-
-
-
-//            Intent intent=new Intent(getActivity(), guidesplash.class);
-//            startActivity(intent);
-        }
 
         view.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         tv1 = (TextView)view.findViewById(R.id.mtalk);
+        tv2 = (TextView)view.findViewById(R.id.textView3);
         init();
-
+        SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
+        final SharedPreferences.Editor editor=pref.edit();
+        tv2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv2.setVisibility(View.GONE);
+            }
+        });
         handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -193,13 +84,21 @@ public class OnLine_Fragment extends Fragment implements View.OnClickListener {
                             getActivity().startActivityForResult(new Intent(OnLine_Fragment.this.getActivity(), SendActivity.class), 0);
                         }
                     }, 1000);
-                } else {
+                } else if(msg.what == 1) {
                     MainActivity.userRes = msg.getData().getString("");
                     Snackbar.make(view, "유저목록을 가져오지 못했습니다.", Snackbar.LENGTH_SHORT).show();
+                } else if(msg.what == 2){
+                    MainActivity.userRes = msg.getData().getString("res");
+                    Snackbar.make(view, "유저목록로딩완료", Snackbar.LENGTH_SHORT).show();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getActivity().startActivityForResult(new Intent(OnLine_Fragment.this.getActivity(), resend.class), 2);
+                        }
+                    }, 1000);
                 }
             }
         };
-
 
         return view;
     }
@@ -207,16 +106,18 @@ public class OnLine_Fragment extends Fragment implements View.OnClickListener {
     private void init() {
         imageView = (ImageView) view.findViewById(R.id.backGround_online);
 //
-character_online = (ImageView) view.findViewById(R.id.character_online);
+        character_online = (ImageView) view.findViewById(R.id.character_online);
 //
         character_online_frameAnimationDrawable = (AnimationDrawable) character_online.getDrawable();
         character_online_frameAnimationDrawable.start();
-
-        fish_online = (ImageView) view.findViewById(R.id.fish_online);
-        fish_online.setBackgroundResource(R.drawable.fish_anim);
-
-        fish_online_frameAnimationDrawable = (AnimationDrawable) fish_online.getBackground();
-        fish_online_frameAnimationDrawable.start();
+//        SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
+//        Boolean enable = pref.getBoolean("Enable", false);
+//        {
+//            fish_online = (ImageView) view.findViewById(R.id.fish_online);
+//            fish_online.setBackgroundResource(R.drawable.fish_anim);
+//            fish_online_frameAnimationDrawable = (AnimationDrawable) fish_online.getBackground();
+//            fish_online_frameAnimationDrawable.start();
+//        }
         character_online = (ImageView)view.findViewById(R.id.character_online);
         character_online.setOnClickListener(this);
         mainSend = (Button) view.findViewById(R.id.main_send);
@@ -227,21 +128,19 @@ character_online = (ImageView) view.findViewById(R.id.character_online);
         receiveQuestion.setOnClickListener(this);
         btn1 = (Button)view.findViewById(R.id.receive_answer);
         btn2 = (Button)view.findViewById(R.id.receive_question);
-
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(view, "답변받기는 아직 지원되지 않습니다.", Snackbar.LENGTH_SHORT).show();
-            }
-        });
         SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
         String asas = pref.getString("titles", "");
-        if(asas.toString().equals("")){
-            receiveQuestion.setVisibility(View.GONE);
-        }else if(pref.getBoolean("first", true)) {
-            receiveQuestion.setVisibility(View.VISIBLE);
-        }
 
+        if(pref.getBoolean("first", true)) {
+            if (asas.toString().equals("")) {
+                receiveQuestion.setVisibility(View.GONE);
+                tv2.setVisibility(View.GONE);
+            } else {
+                receiveQuestion.setVisibility(View.VISIBLE);
+                tv2.setVisibility(View.VISIBLE);
+                tv2.setText(tv2.getText() + asas.replaceAll("======답장======",""));
+            }
+        }
 
     }
 
@@ -252,9 +151,25 @@ character_online = (ImageView) view.findViewById(R.id.character_online);
                 Snackbar.make(view, "유저목록을 가져오고 있습니다. 기다려주십시오", Snackbar.LENGTH_SHORT).show();
                 new GetServer().execute();
                 break;
+            case R.id.receive_answer:
+                Snackbar.make(view, "답변받기는 아직 지원되지 않습니다.", Snackbar.LENGTH_SHORT).show();
+                break;
             case R.id.receive_question:
-                Snackbar.make(view, "유저목록을 가져오고 있습니다. 기다려주십시오", Snackbar.LENGTH_SHORT).show();
-                new GetServer().execute();
+                mssg = 1;
+
+                SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
+                String dsdf = pref.getString("titles","");
+                if(dsdf.length() > 0){
+
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.remove("titles");
+                    editor.apply();
+                    Snackbar.make(view, "유저목록을 가져오고 있습니다. 기다려주십시오", Snackbar.LENGTH_SHORT).show();
+                    new GetServer().execute();
+
+                }else{
+                    Snackbar.make(view, "답할 답변이 없습니다.", Snackbar.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.character_online:
                 tv1.setVisibility(View.VISIBLE);

@@ -38,12 +38,7 @@ public class GcmListenerService extends com.google.android.gms.gcm.GcmListenerSe
     private void sendNotification(String title, String message) {
         SharedPreferences pref = this.getApplicationContext().getSharedPreferences("MyPref", 0);
         SharedPreferences.Editor editor=pref.edit();
-        Intent intss = new Intent(this, MainActivity.class);
-        Intent ints = new Intent(String.valueOf(editor.putString("titles", title)) + intss);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */,ints,
-                PendingIntent.FLAG_ONE_SHOT);
-        editor.apply();
 
 
 
@@ -54,32 +49,27 @@ public class GcmListenerService extends com.google.android.gms.gcm.GcmListenerSe
 //            editor.putBoolean("noti", false);
 //            editor.apply();
 
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.right_arrow)
-                .setContentTitle(title = URLDecoder.decode(title))
-                .setContentText("클릭후 앱을 실행하여 답장하세요!")
-                .setAutoCancel(true)
-                .setSound(defaultSoundUri)
-                .setContentIntent(pendingIntent);
+            Intent ints = new Intent(String.valueOf(editor.putString("titles", title)));
 
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
-
-        }else{
-            //알림off
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */,ints,
+                    PendingIntent.FLAG_ONE_SHOT);
+            editor.apply();
             NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                    .setSmallIcon(R.drawable.right_arrow)
+                    .setSmallIcon(R.drawable.character)
                     .setContentTitle(title = URLDecoder.decode(title))
-                    .setContentText("클릭하셔야 답장이 가능합니다.")
+                    .setContentText("클릭후 앱을 실행하여 답장하세요!")
                     .setAutoCancel(true)
+                    .setSound(defaultSoundUri)
                     .setContentIntent(pendingIntent);
 
             NotificationManager notificationManager =
                     (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
+
             notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+
+        }else{
+
         }
     }
 }
